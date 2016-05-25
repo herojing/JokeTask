@@ -1,52 +1,65 @@
 package com.example.wangjing.joketask;
 
-import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.widget.ListView;
 
-public class MainActivity extends AppCompatActivity {
+import com.example.wangjing.joketask.adapter.JokeAdapter;
+import com.example.wangjing.joketask.entities.Joke;
+import com.example.wangjing.joketask.entities.JokeInfo;
+import com.example.wangjing.joketask.task.TaskCallBack;
+import com.example.wangjing.joketask.task.TaskResult;
+import com.example.wangjing.joketask.task.joketask.JokeTask;
+
+import java.util.ArrayList;
+
+public class MainActivity extends BaseActivity implements TaskCallBack {
+
+    // 不做分页加载的操作，所以这两个参数写死
+    public static final String PAGE_NUM = "1";
+
+    public static final String PAGE_SIZE = "20";
+
+    private ListView mListView;
+
+    private ArrayList<JokeInfo> mJokeInfoArrayList = null;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void initVariables() {
+        mJokeInfoArrayList = new ArrayList<>();
+    }
+
+    @Override
+    public void initView() {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if (toolbar != null) {
+            setSupportActionBar(toolbar);
+            toolbar.setTitle(R.string.app_name);
         }
+        mListView = (ListView) findViewById(R.id.main_page_joke_lv);
+    }
 
-        return super.onOptionsItemSelected(item);
+    @Override
+    public void loaderData() {
+
+        JokeTask joketask = new JokeTask(this);
+        joketask.execute(PAGE_NUM, PAGE_SIZE);
+    }
+
+    @Override
+    public void onTaskFinished(TaskResult result) {
+        if (result != null) {
+            int action = result.action;
+            switch (action) {
+                case Constants.TASK_ACTION_GET_JOKE_CONTENT:
+                    if (result.data instanceof Joke) {
+                        Joke joke= (Joke) result.data;
+                        mJokeInfoArrayList=joke.getResult().getJokeInfoArrayList();
+                        JokeAdapter jokeAdapter = new JokeAdapter(this, mJokeInfoArrayList);
+                        mListView.setAdapter(jokeAdapter);
+                    }
+                    break;
+            }
+        }
     }
 }
