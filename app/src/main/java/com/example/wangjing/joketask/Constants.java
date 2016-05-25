@@ -1,16 +1,10 @@
 package com.example.wangjing.joketask;
 
 /**
- * ============================================================
- * author：     王景
- * <p/>
- * time：       2015/9/21  16:21.
- * <p/>
- * email:     wjontheway@163.com
- * <p/>
- * description：  整个应用程序的常量的定义
- * <p/>
- * ============================================================
+ * @author wangjing
+ * @since 2016/5/25 10:20
+ * @version 1.0
+ * <p><strong>Features draft description.主要功能介绍</strong></p>
  */
 public class Constants {
     //获取笑话内容

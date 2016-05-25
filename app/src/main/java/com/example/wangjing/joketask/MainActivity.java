@@ -11,7 +11,12 @@ import com.example.wangjing.joketask.task.TaskResult;
 import com.example.wangjing.joketask.task.joketask.JokeTask;
 
 import java.util.ArrayList;
-
+/**
+ * @author wangjing
+ * @since 2016/5/25 9:59
+ * @version 1.0
+ * <p><strong>Features draft description.主要功能介绍</strong></p>
+ */
 public class MainActivity extends BaseActivity implements TaskCallBack {
 
     // 不做分页加载的操作，所以这两个参数写死

@@ -3,16 +3,10 @@ package com.example.wangjing.joketask.task;
 import android.os.AsyncTask;
 
 /**
- * ============================================================
- * author：     王景
- * <p/>
- * time：       2015/9/22  16:58.
- * <p/>
- * email:     wjontheway@163.com
- * <p/>
- * description：
- * <p/>
- * ============================================================
+ * @author wangjing
+ * @since 2016/5/25 10:10
+ * @version 1.0
+ * <p><strong>Features draft description.主要功能介绍</strong></p>
  */
 public abstract class BaseTask extends AsyncTask<String ,Integer,TaskResult> {
 

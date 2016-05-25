@@ -7,17 +7,11 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.zip.GZIPInputStream;
-
 /**
- * ============================================================ author： 王景
- * <p/>
- * time： 2015/9/22 14:11.
- * <p/>
- * email: wjontheway@163.com
- * <p/>
- * description： Http静态工作类
- * <p/>
- * ============================================================
+ * @author wangjing
+ * @since 2016/5/25 10:38
+ * @version 1.0
+ * <p><strong>Features draft description.Http静态工作类</strong></p>
  */
 public final class HttpUtil {
     private static final int    TIMEOUT_CONNECT = 5000;

@@ -3,6 +3,12 @@ package com.example.wangjing.joketask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+/**
+ * @author wangjing
+ * @since 2016/5/25 9:58
+ * @version 1.0
+ * <p><strong>Features draft description.主要功能介绍</strong></p>
+ */
 public abstract class BaseActivity extends AppCompatActivity {
 
     @Override
